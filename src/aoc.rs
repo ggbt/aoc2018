@@ -6,12 +6,11 @@ use std::fs::File;
 use std::io::Read;
 use std::path::Path;
 
-/// Reads the file located at `input_path` and calls `callback` with the result.
+/// Reads the file located at `input_path` and returns the content as a string.
 ///
 /// Arguments
 /// ---------
 /// * `input_path` - The path of the file to read.
-/// * `callback` - The method to call after reading from `input_path`
 pub fn read_input
 <P: AsRef<Path>>
 (input_path: P) -> String {
