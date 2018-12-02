@@ -5,7 +5,7 @@ use std::collections::HashSet;
 pub fn part_1() {
     let input = read_input("day_1.1.input");
 
-    let changes = input.trim().split("\n");
+    let changes = input.trim().lines();
 
     let mut frequency = 0_i64;
 
@@ -20,7 +20,7 @@ pub fn part_1() {
 pub fn part_2() {
     let input = read_input("day_1.2.input");
 
-    let changes = input.trim().split("\n");
+    let changes = input.trim().lines();
     let mut frequency = 0_i64;
 
     let mut frequencies = HashSet::new();
@@ -29,11 +29,9 @@ pub fn part_2() {
     for change in changes.cycle() {
         frequency += change.parse::<i64>().unwrap();
 
-        if let Some(_) = frequencies.get(&frequency) {
+        if !frequencies.insert(frequency) {
             println!("First repeated frequency: {}", frequency);
             break;
         }
-
-        frequencies.insert(frequency);
     }
 }
