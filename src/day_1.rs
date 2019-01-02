@@ -1,4 +1,5 @@
-use aoc::read_input;
+use crate::aoc::read_input;
+
 use std::collections::HashSet;
 
 /// https://adventofcode.com/2018/day/1#part1
