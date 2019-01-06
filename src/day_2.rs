@@ -4,7 +4,7 @@ use std::collections::HashMap;
 
 /// https://adventofcode.com/2018/day/2#part1
 pub fn part_1() {
-    let input = read_input("day_2.1.input");
+    let input = read_input("day_2.input");
 
     let box_ids = input.lines();
 
@@ -56,7 +56,7 @@ fn got_repeats(input: &str) -> (bool, bool) {
 
 /// https://adventofcode.com/2018/day/2#part2
 pub fn part_2() {
-    let input = read_input("day_2.2.input");
+    let input = read_input("day_2.input");
 
     let box_ids = input.lines();
     let mut done = false;

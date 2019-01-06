@@ -50,7 +50,7 @@ impl Claim {
 
 /// https://adventofcode.com/2018/day/3#part1
 pub fn part_1() {
-    let input = read_input("day_3.1.input");
+    let input = read_input("day_3.input");
 
     let claims = input.lines().map(Claim::new);
     let mut claimed_coordinates = HashMap::new();
@@ -73,7 +73,7 @@ pub fn part_1() {
 
 /// https://adventofcode.com/2018/day/3#part2
 pub fn part_2() {
-    let input = read_input("day_3.2.input");
+    let input = read_input("day_3.input");
 
     let claims = input.lines().map(Claim::new);
     let mut claimed_coordinates = HashMap::new();

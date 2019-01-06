@@ -4,7 +4,7 @@ use std::collections::HashSet;
 
 /// https://adventofcode.com/2018/day/1#part1
 pub fn part_1() {
-    let input = read_input("day_1.1.input");
+    let input = read_input("day_1.input");
 
     let changes = input.trim().lines();
 
@@ -19,7 +19,7 @@ pub fn part_1() {
 
 /// https://adventofcode.com/2018/day/1#part2
 pub fn part_2() {
-    let input = read_input("day_1.2.input");
+    let input = read_input("day_1.input");
 
     let changes = input.trim().lines();
     let mut frequency = 0_i64;

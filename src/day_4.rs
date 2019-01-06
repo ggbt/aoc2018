@@ -1,6 +1,7 @@
 use crate::aoc::read_input;
 
 use std::collections::HashMap;
+use std::collections::hash_map::RandomState;
 use chrono::{NaiveDateTime, Timelike};
 use regex::Regex;
 use lazy_static::*;
@@ -15,7 +16,7 @@ enum Action {
 
 #[derive(Debug)]
 struct Record {
-    pub date_time: NaiveDateTime,
+    date_time: NaiveDateTime,
     action: Action
 }
 
@@ -49,8 +50,8 @@ impl Record {
     }
 }
 
-pub fn part_1() {
-    let mut records: Vec<Record> = read_input("day_4.1.input")
+fn calculate_guards_sleep_schedules() -> HashMap<u32, Vec<u32>, RandomState> {
+    let mut records: Vec<Record> = read_input("day_4.input")
         .lines()
         .map(Record::from_str)
         .collect();
@@ -80,11 +81,18 @@ pub fn part_1() {
         };
     }
 
+    guard_sleep_schedules
+}
+
+/// https://adventofcode.com/2018/day/4#part1
+pub fn part_1() {
+    let guards_sleep_schedules = calculate_guards_sleep_schedules();
+
     let mut max_slept_nr_minutes: u32 = 0;
     let mut max_slept_guard_id: u32 = 0;
     let mut max_slept_minute: u32 = 0;
 
-    for (guard_id, sleep_schedule) in guard_sleep_schedules {
+    for (guard_id, sleep_schedule) in guards_sleep_schedules {
         let mut max_slept_times_at_minute: u32 = 0;
         let mut local_max_slept_minute: u32 = 0;
         let mut local_max_slept_nr_minutes: u32 = 0;
@@ -107,4 +115,35 @@ pub fn part_1() {
     }
 
     println!("{}", max_slept_guard_id * max_slept_minute);
+}
+
+/// https://adventofcode.com/2018/day/4#part2
+pub fn part_2() {
+    let guards_sleep_schedules = calculate_guards_sleep_schedules();
+
+    let mut max_guard_id: u32 = 0;
+    let mut max_slept_minute_value: u32 = 0;
+    let mut max_slept_minute_index: u32 = 0;
+
+    for (guard_id, sleep_schedule) in guards_sleep_schedules {
+        let mut max_value: u32 = 0;
+        let mut index_of_max_value: usize = 0;
+
+        for i in 0..sleep_schedule.len() {
+            let value = sleep_schedule.get(i).unwrap();
+
+            if *value > max_value {
+                max_value = *value;
+                index_of_max_value = i;
+            }
+        }
+
+        if max_value > max_slept_minute_value {
+            max_slept_minute_value = max_value;
+            max_guard_id = guard_id;
+            max_slept_minute_index = index_of_max_value as u32;
+        }
+    }
+
+    println!("{}", max_guard_id * max_slept_minute_index);
 }
