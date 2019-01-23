@@ -173,5 +173,5 @@ pub fn part_2() {
         };
     }
 
-    println!("{}", total_close_area); // WRONG: 166872, 1017072, 2587272
+    println!("{}", total_close_area);
 }
